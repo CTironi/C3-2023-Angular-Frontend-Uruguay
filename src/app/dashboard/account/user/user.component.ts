@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { CustomerModel } from 'src/app/interfaces/Customer.interface';
+import { Component } from '@angular/core';
 import { AccountService } from '../services/account.service';
 import { LoginService } from 'src/app/modules/login/services/login.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -21,7 +21,7 @@ export class UserComponent {
   ) { }
 
   customers: CustomerModel[] = <CustomerModel[]>this.loginService.signedUpUsers;
-  customer!: CustomerModel;
+  customer: CustomerModel = <CustomerModel>this.loginService.signedUpUser;
   customerId!: string;
   accounts: AccountModel[] = <AccountModel[]>this.loginService.customerAccounts;
 
