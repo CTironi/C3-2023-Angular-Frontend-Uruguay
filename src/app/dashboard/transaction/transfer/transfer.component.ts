@@ -11,5 +11,4 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class TransferComponent {
 
-
 }
