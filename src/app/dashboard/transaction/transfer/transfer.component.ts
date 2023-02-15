@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { TransferModel } from 'src/app/interfaces/transfer.interface';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -11,4 +13,41 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class TransferComponent {
 
+  constructor(private formBuilder: FormBuilder,
+              private api: ApiService,
+              private http: HttpClient,
+              private router: Router,
+  ) { }
+  
+
+  transferForm = this.formBuilder.group({
+    outcomeID: this.formBuilder.nonNullable.control('', { validators: [Validators.required] }),
+    incomeID: this.formBuilder.nonNullable.control('', { validators: [Validators.required] }),
+    amount: this.formBuilder.nonNullable.control('', { validators: [Validators.required] }),
+    reason: this.formBuilder.nonNullable.control('', { validators: [Validators.required] }),
+  });
+
+  transfer(form: TransferModel): Observable<TransferModel> {
+    let direction = this.api.url + "/transfer/create";
+    return this.http.post<TransferModel>(direction, form);
+  }
+
+  creatreTransfer() {
+    if ( this.transferForm.controls.outcomeID.value 
+      && this.transferForm.controls.incomeID.value
+      && this.transferForm.controls.amount.value
+      && this.transferForm.controls.reason.value
+      ) {
+      let form = {
+        outcomeID: this.transferForm.controls.outcomeID.value ,
+        incomeID: this.transferForm.controls.incomeID.value,
+        amount: + this.transferForm.controls.amount.value,
+        reason: this.transferForm.controls.reason.value,
+      }
+      this.transfer(form).subscribe(data => {
+        console.log(data);
+        this.router.navigate(['account/user'])
+      })
+    }
+  }
 }
