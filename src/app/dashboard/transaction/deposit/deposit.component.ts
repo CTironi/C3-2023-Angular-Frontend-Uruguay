@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { DepositModel } from 'src/app/interfaces/deposit.interface';
 import { ApiService } from '../../../services/api.service';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-deposit',
@@ -15,6 +16,7 @@ export class DepositComponent {
   constructor(private formBuilder: FormBuilder,
     private api: ApiService,
     private http: HttpClient,
+    private router: Router,
   ) { }
 
   depositForm = this.formBuilder.group({
@@ -29,12 +31,13 @@ export class DepositComponent {
 
   deposit() {
     if (this.depositForm.controls.accountId.value && this.depositForm.controls.amount.value) {
-      let form1 = {
+      let form = {
         accountId: this.depositForm.controls.accountId.value,
         amount: + this.depositForm.controls.amount.value
       }
-      this.depo(form1).subscribe(data => {
+      this.depo(form).subscribe(data => {
         console.log(data);
+        this.router.navigate(['account/user'])
       })
     }
   }
