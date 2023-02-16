@@ -23,14 +23,12 @@ export class UpdateCustomerComponent {
     email: this.accountService.customer.email,
     phone: this.accountService.customer.phone.toString(),
     password: this.accountService.customer.password,
-    documentType: this.accountService.customer.documentType,
     document: this.accountService.customer.document,
   });
 
 
   updateCustomer() {
-    if (this.updateCustomerForm.controls.documentType.value
-      && this.updateCustomerForm.controls.document.value
+    if (this.updateCustomerForm.controls.document.value
       && this.updateCustomerForm.controls.fullName.value
       && this.updateCustomerForm.controls.email.value
       && this.updateCustomerForm.controls.phone.value
@@ -38,7 +36,6 @@ export class UpdateCustomerComponent {
     ) {
 
       const form: UpdateCustomerModel = {
-        documentType: this.updateCustomerForm.controls.documentType.value,
         document: this.updateCustomerForm.controls.document.value,
         fullName: this.updateCustomerForm.controls.fullName.value,
         email: this.updateCustomerForm.controls.email.value,
