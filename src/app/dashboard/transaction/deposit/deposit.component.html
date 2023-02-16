@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-content>
-    <form [formGroup]="depositForm" (ngSubmit)="deposit()">
+    <form [formGroup]="depositForm" (ngSubmit)="newdeposit()">
       <h2>Deposit</h2>
       <mat-form-field>
         <input matInput placeholder="AccountID" name="accountId" required formControlName="accountId">
@@ -10,5 +10,27 @@
       </mat-form-field>
       <button type="submit" mat-raised-button color="primary">Deposit</button>
     </form>
+
+    <tr *ngFor="let index of deposit">
+      <td>
+        <div class="product-item">
+          <div class="product-info">
+            <h4 class="product-title"><a href="#">Tipo de Cuenta: </a><br><a></a>
+            </h4>
+            <div class="text-lg text-medium text-muted"><a>Amount: $</a>{{index.amount}} <a> SofkaCoins</a></div>
+            <div class="text-lg text-medium text-muted"><a>AccountID: </a>{{index.accountId.id}}</div>
+            <div>State:
+              <div class="d-inline text-success"></div>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title=""
+          data-original-title="Remove item"><i class="icon-cross"></i></a></td>
+    </tr>
   </mat-card-content>
 </mat-card>
+
+
+
+
