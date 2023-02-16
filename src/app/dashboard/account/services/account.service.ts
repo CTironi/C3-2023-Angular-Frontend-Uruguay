@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/services/api.service';
 import { AccountModel } from '../../../interfaces/account.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LoginService } from 'src/app/modules/login/services/login.service';
+import { UpdateCustomerModel } from '../../../interfaces/update-customer.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -40,7 +41,6 @@ export class AccountService {
     throw new Error('')
   }
 
-
   public getAllCustomers(): Observable<CustomerModel[]> {
     return this.http.get<CustomerModel[]> (this.api.url + "/customer/getAll");
   }
@@ -67,4 +67,7 @@ export class AccountService {
     )
   }
 
+  public postUpdateCustomer(id: string, customer: UpdateCustomerModel): Observable<UpdateCustomerModel> {
+    return this.http.put<UpdateCustomerModel>(this.api.url + "/customer/updateCustomer/" + id, customer)
+  }
 }
