@@ -1,1 +1,38 @@
-<p>update-customer works!</p>
+<mat-card>
+  <mat-card-content>
+    <form >
+      <h2>Update</h2>
+      <mat-form-field>
+        <input matInput placeholder="Full Name" name="fullName" required formControlName="fullName">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Password" name="password" required formControlName="password">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Document Type</mat-label>
+        <mat-select formControlName="documentTypeName" name="documentTypeName" id="documentTypeName">
+          <mat-option value="Cedula">Cedula</mat-option>
+          <mat-option value="Pasaporte">Pasaporte</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Document" name="document" required formControlName="document">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email" name="email" required formControlName="email">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Phone" name="phone" required formControlName="phone">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Account Type</mat-label>
+        <mat-select placeholder="Account Type" name="accountTypeName" required formControlName="accountTypeName">
+          <mat-option value="Cuenta Corriente">Cuenta Corriente</mat-option>
+          <mat-option value="Caja de Ahorro">Caja de Ahorro</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button class="button" type="submit" mat-raised-button color="primary">Update</button><br>
+      <button type="submit" mat-raised-button color="primary" [routerLink]="['/account/user']">Cancel</button>
+    </form>
+  </mat-card-content>
+</mat-card>
