@@ -12,11 +12,11 @@
                 alt="User">
             </div>
             <div class="user-data">
-              <h4>Name: </h4><span>{{customer.fullName}}</span>
-              <h4>Document Type: </h4><span *ngIf="customer.documentType" >{{customer.documentType.name}}</span>
-              <h4>Document: </h4><span>{{customer.document}}</span>
-              <h4>Email: </h4><span>{{customer.email}}</span>
-              <h4>Phone: </h4><span>{{customer.phone}}</span>
+              <h4>Name: </h4><span>{{this.accountService.customer.fullName}}</span>
+              <h4>Document Type: </h4><span *ngIf="this.accountService.customer.documentType" >{{this.accountService.customer.documentType.name}}</span>
+              <h4>Document: </h4><span>{{this.accountService.customer.document}}</span>
+              <h4>Email: </h4><span>{{this.accountService.customer.email}}</span>
+              <h4>Phone: </h4><span>{{this.accountService.customer.phone}}</span>
             </div>
           </div>
         </aside>

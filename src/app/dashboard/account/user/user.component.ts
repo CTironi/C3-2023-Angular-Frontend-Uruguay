@@ -14,23 +14,20 @@ import { AccountModel } from 'src/app/interfaces/account.interface';
 export class UserComponent {
 
   constructor(
-    private accountService: AccountService,
+    protected accountService: AccountService,
     private loginService: LoginService,
   ) { }
 
   customers: CustomerModel[] = <CustomerModel[]>this.loginService.signedUpUsers;
-  customer: CustomerModel = <CustomerModel>this.loginService.signedUpUser;
-  customerId!: string;
   accounts: AccountModel[] = <AccountModel[]>this.loginService.customerAccounts;
 
 
   ngOnInit(): void {
-    this.getCustomer();
+    this.accountService.getCustomer();
     setTimeout(() => {
       this.getAccount();
     },500)
   }
-
 
   public getAllCustomer(): void {
     this.accountService.getAllCustomers().subscribe({
@@ -39,16 +36,8 @@ export class UserComponent {
     })
   }
 
-  public getCustomer() {
-    this.accountService.getcustomerByEmail().subscribe((response) => {
-      this.customer = response,
-      this.customerId = response.id
-      }
-    )
-  }
-
   public getAccount() {
-    this.accountService.getAllAccount(this.customerId).subscribe({
+    this.accountService.getAllAccount(this.accountService.customerId).subscribe({
       next: (response: AccountModel[]) => { console.log(this.accounts = response) },
       error: (error: HttpErrorResponse) => { alert(error.message) }
     })
