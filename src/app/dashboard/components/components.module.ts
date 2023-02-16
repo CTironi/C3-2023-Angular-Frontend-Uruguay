@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { DeleteComponent } from './delete/delete.component';
 import { SearchComponent } from './search/search.component';
 import { ComponentsRouteModule } from './components-route.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/app/modules/material/material.module';
 
 
 
@@ -12,7 +14,10 @@ import { ComponentsRouteModule } from './components-route.module';
     SearchComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
   ],
   exports: [
     ComponentsRouteModule,
