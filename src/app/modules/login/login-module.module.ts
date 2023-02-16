@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from './services/login.service';
 import { LoginRouteModule } from './login-route.module';
 import { SignupGoogleComponent } from './signup-google/signup-google.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -23,6 +24,7 @@ import { SignupGoogleComponent } from './signup-google/signup-google.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
   ],
   exports: [
     SinginComponent,
