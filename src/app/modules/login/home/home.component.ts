@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../login/services/login.service';
-import { AppComponent } from '../../../app.component';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +8,7 @@ import { AppComponent } from '../../../app.component';
 })
 export class HomeComponent {
 
-  constructor(public loginService: LoginService,
-    private app: AppComponent){}
+  constructor(public loginService: LoginService){}
 
     ngDoCheck(){
       this.loginService.eligeLogin()
