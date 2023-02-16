@@ -71,7 +71,6 @@ export class LoginService {
       console.log(response);
       if(response.user.email) this.email = response.user.email
       if(response.user.displayName) this.fullName = response.user.displayName
-      console.log(this.email)
       this.router.navigate(['login/signupgoogle']);
     })
     .catch(error => console.log(error))
