@@ -1,10 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TransferModel } from 'src/app/interfaces/transfer.interface';
 import { ApiService } from 'src/app/services/api.service';
+import { TransferHistoryModel } from 'src/app/interfaces/transfer-history.interface';
+import { TransactionsService } from '../services/transactions.service';
 
 @Component({
   selector: 'app-transfer',
@@ -17,14 +19,20 @@ export class TransferComponent {
               private api: ApiService,
               private http: HttpClient,
               private router: Router,
+              private transactionsService: TransactionsService,
   ) { }
   
+  transfers: TransferHistoryModel[] = []
 
   transferForm = this.formBuilder.group({
     outcomeID: this.formBuilder.nonNullable.control('', { validators: [Validators.required] }),
     incomeID: this.formBuilder.nonNullable.control('', { validators: [Validators.required] }),
     amount: this.formBuilder.nonNullable.control('', { validators: [Validators.required] }),
     reason: this.formBuilder.nonNullable.control('', { validators: [Validators.required] }),
+  });
+
+  getTransferByAccount = this.formBuilder.group({
+    accountId: this.formBuilder.nonNullable.control('', { validators: [Validators.required] }),
   });
 
   transfer(form: TransferModel): Observable<TransferModel> {
@@ -49,5 +57,12 @@ export class TransferComponent {
         this.router.navigate(['account/user'])
       })
     }
+  }
+
+  getTransfer() {
+    this.transactionsService.getAllTransfer(this.getTransferByAccount.controls.accountId.value).subscribe({
+      next: (response: TransferHistoryModel[]) => { console.log(this.transfers = response) },
+      error: (error: HttpErrorResponse) => { alert(error.message) }
+    })
   }
 }

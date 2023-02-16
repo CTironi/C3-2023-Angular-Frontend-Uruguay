@@ -15,7 +15,7 @@ import { DepositHistoyModel } from 'src/app/interfaces/deposit-history.interface
 })
 export class DepositComponent {
 
-  deposit: DepositHistoyModel[] = <DepositHistoyModel[]>this.transactionService.deposit;
+  deposit: DepositHistoyModel[] = [];
 
   constructor(private formBuilder: FormBuilder,
     private api: ApiService,

@@ -16,5 +16,32 @@
       </mat-form-field>
       <button type="submit" mat-raised-button color="primary">Transfer</button>
     </form>
+
+    <div  class="transfer">
+      <form [formGroup]="getTransferByAccount" (ngSubmit)="getTransfer()">
+        <h2>Get Transfers History</h2>
+        <mat-form-field>
+          <input matInput placeholder="AccountId" name="accountId" required formControlName="accountId">
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary">Get History</button>
+      </form>
+    </div>
+
+    <tr *ngFor="let index of transfers">
+      <td>
+        <div class="product-item">
+          <div class="product-info">
+            <div class="text-lg text-medium text-muted"><a><b>TransferID: </b></a>{{index.id}}</div>
+            <div class="text-lg text-medium text-muted"><a><b>OutcomeID: </b></a>{{index.outcome.id}}</div>
+            <div class="text-lg text-medium text-muted"><a><b>IncomeID: </b></a>{{index.income.id}}</div>
+            <div class="text-lg text-medium text-muted"><a><b>Reason: </b></a>{{index.reason}}</div>
+            <div class="text-lg text-medium text-muted"><a><b>Date: </b></a>{{index.dateTime}}</div>
+            <div class="text-lg text-medium text-muted"><a><b>Amount: $</b></a>{{index.amount}} <a> SofkaCoins</a></div>
+          </div>
+        </div>
+      </td>
+      <td class="text-center"><a class="remove-from-cart" href="#" data-toggle="tooltip" title=""
+          data-original-title="Remove item"><i class="icon-cross"></i></a></td>
+    </tr>
   </mat-card-content>
 </mat-card>

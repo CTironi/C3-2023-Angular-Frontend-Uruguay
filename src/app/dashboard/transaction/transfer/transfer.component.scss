@@ -2,8 +2,33 @@ mat-card {
   max-width: 400px;
   margin: 2em auto;
   text-align: center;
+  padding-bottom: 5%;
 }
 
 mat-form-field {
   display: block;
+}
+
+.transfer{
+  margin-top: 30px;
+}
+
+.product-item {
+  text-align: left;
+  border-bottom: 1px solid;
+}
+
+.product-item {
+    display: table;
+    width: 100%;
+    min-width: 150px;
+    margin-top: 10px;
+    margin-bottom: 3px
+}
+
+.product-item .product-title>a {
+    transition: color .3s;
+    color: #374250;
+    line-height: 1.5;
+    text-decoration: none
 }
